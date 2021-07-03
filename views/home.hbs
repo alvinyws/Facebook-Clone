@@ -1,0 +1,40 @@
+<div class="home-container">
+    <h2>Your Stories</h2>
+
+    <div class="input-container">
+
+        Welcome back , {{user.username}}
+
+        <form action="/story" method="POST">
+            <label class="form-label" for="title">Story</label><br>
+            <input class="form-input" type="text" id="title" name="story" placeholder="Tell your story"> &nbsp;
+            <input type="submit" class="btn btn-success" id="submitbutton" value="POST">
+        </form>
+    </div>
+
+    {{#each stories}}
+    <div data-id="{{id}}" class="story">
+        <div class="story-container">
+            {{story}}
+        </div>
+
+        <form action="/story/:id?_method=PUT" method="POST">
+            <button type="button" class="btn btn-secondary" id="editButton">Edit</button>&nbsp;
+        </form>
+
+        {{!-- <button type="button" class="btn btn-danger" id="deleteButton">Delete</button> --}}
+
+        <input onclick="return ConfirmRemove();" type="submit" name="deleteStory" class="btn btn-danger"
+            id="deleteButton" value="Delete">
+        <hr>
+    </div>
+    {{/each}}
+
+
+    <div id="logout">
+        <form action="/logout?_method=DELETE" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+</div>
